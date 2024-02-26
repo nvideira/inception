@@ -1,0 +1,41 @@
+version: '1.29.2'
+
+services:
+  nginx-server:
+    build: ./requirements/nginx
+    image: nginx-server
+    container_name: nginx
+    ports:
+      - 443:443
+    restart: on-failure
+    volumes:
+      - wp_vol:/var/www/html
+    networks:
+      - 
+    depends_on:
+
+  maria-database:
+    build: ./requirements/mariadb
+    image: maria-database
+    container_name: mariadb
+    env_file:
+      - .env
+    restart: on-failure
+    volumes:
+      - 
+    networks:
+      - 
+    
+  wordpress-site:
+    build: ./requirements/wordpress
+    image: wordpress-site
+    container_name: wordpress
+    env_file:
+      - .env
+    restart: on-failure
+    volumes:
+      - 
+    networks:
+      - 
+    depends_on:
+      
