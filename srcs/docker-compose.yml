@@ -1,9 +1,9 @@
-version: '1.29.2'
+version: '3.8'
 
 services:
-  nginx-server:
+  nginx:
     build: ./requirements/nginx
-    image: nginx-server
+    image: nginx
     container_name: nginx
     ports:
       - 443:443
@@ -14,28 +14,50 @@ services:
       - 
     depends_on:
 
-  maria-database:
+  maria-db:
     build: ./requirements/mariadb
-    image: maria-database
+    image: mariadb
     container_name: mariadb
     env_file:
       - .env
     restart: on-failure
     volumes:
-      - 
+      - maria_vol:/var/lib/mysql
     networks:
       - 
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "--silent" ]
+      interval: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 5s
     
-  wordpress-site:
+  wordpress:
     build: ./requirements/wordpress
-    image: wordpress-site
+    image: wordpress
     container_name: wordpress
     env_file:
       - .env
     restart: on-failure
     volumes:
-      - 
+      - wp_vol
     networks:
       - 
     depends_on:
-      
+      mariadb:
+        condition: service_healthy
+
+volumes:
+  maria_vol:
+    name: maria_vol
+    driver_opts:
+      type: none
+      device: /home/nvideira/data/mysql
+  wp_vol:
+    name: wp_vol
+    driver_opts:
+      type: none
+      device: /home/nvideira/data/wordpress
+
+networks:
+  
