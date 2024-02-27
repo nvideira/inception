@@ -6,7 +6,10 @@ RUN apt-get install -y php-fpm php-mysql php-gd php-curl wget tar mariadb-client
 
 RUN curl -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 
-RUN chmod +x /usr/local/bin/wp
+RUN chmod +x wp-cli.phar
+
+RUN mv wp-cli.phar /usr/local/bin/wp
+
 
 #RUN wget -q0- https://wordpress.org/latest.tar.gz | tar xvz -C /var/www/html --strip
 COPY ./tools/wp-script.sh /home
