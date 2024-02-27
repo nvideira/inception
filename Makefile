@@ -3,7 +3,7 @@ all: start
 start:
 		mkdir -p /home/nvideira/data/mysql
 		mkdir -p /home/nvideira/data/wordpress
-		docker compose -f ./srcs/docker-compose.yml up -d
+		docker-compose -f ./srcs/docker-compose.yml up -d
 
 down:
 		docker-compose -f ./srcs/docker-compose.yml down --rmi all --volumes
