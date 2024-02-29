@@ -13,7 +13,7 @@ RUN mkdir /etc/nginx/ssl
 # -keyout /path/... - specifies the output file where the key will be stored
 # -out /path/... - output file where the certificate will be stored
 # -subj "..." - subject information for the certificate
-RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=PT/L=Lisbon/O=42/CN=nvideira.42.fr"
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx-selfsigned.key -out /etc/nginx/ssl/nginx-selfsigned.crt -subj "/C=PT/L=Lisbon/O=42/CN=nvideira.42.fr"
 
 #copy config file
 COPY conf/nginx.conf /etc/nginx/conf.d
