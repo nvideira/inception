@@ -1,5 +1,7 @@
 #! /bin/sh
 
+sleep 5
+
 if [ ! -f "/var/www/html/wp-config.php" ]; then
     if cd /var/www/html && wp core download --allow-root; then
         wp config create --allow-root --path=/var/www/html/ --dbname=$DB_NAME --dbuser=$DBUSR --dbpass=$DB_PASSWORD --dbhost=$DB_HOST \

@@ -24,4 +24,4 @@ EXPOSE 9000
 
 ENTRYPOINT [ "/home/wp-script.sh" ]
 
-CMD [ "php-fpm", "--nodaemonize" ]
+CMD [ "php-fpm", "--nodaemonize" , "-R"]
