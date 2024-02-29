@@ -12,7 +12,7 @@ stop:
 		docker-compose -f ./srcs/docker-compose.yml stop
 
 clean: down
-		rm -rf /home/nvideira/data;
+		sudo rm -rf /home/nvideira/data;
 
 re: clean start
 

@@ -54,12 +54,14 @@ volumes:
     driver_opts:
       type: none
       device: /home/nvideira/data/mysql
+      o: bind
   wp_vol:
     name: wp_vol
     driver_opts:
       type: none
       device: /home/nvideira/data/wordpress
+      o: bind
 
 networks:
   inception_net:
-    driver: bridge
+    name: inception_net
