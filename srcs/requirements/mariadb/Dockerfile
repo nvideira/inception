@@ -1,14 +1,14 @@
 FROM debian:oldstable-slim
 
-RUN apt-get update -y && apt-get upgrade -y
+RUN apt-get -y update && apt-get -y upgrade
 
-RUN apt-get install mariadb-server -y
+RUN apt-get -y install mariadb-server
 
-COPY ./tools/db-start.sh /home
+RUN mysql_install_db
 
-RUN chmod 711 /home/db-start.sh
+COPY ./tools/db-start.sh /home/db-start.sh
 
-RUN mysql_install_db -y
+RUN chmod 755 /home/db-start.sh
 
 EXPOSE 3306
 

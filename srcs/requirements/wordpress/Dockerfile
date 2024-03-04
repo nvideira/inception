@@ -13,15 +13,15 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 RUN mkdir -p /run/php && chmod 755 /run/php
 #RUN mv wp-cli.phar /usr/local/bin/wp
 
-RUN sed -i 's#listen = /run/php/php7\.3-fpm\.sock#listen = 9000#g' /etc/php/7.*/fpm/pool.d/www.conf
+RUN sed -i 's#listen = /run/php/php7.4-fpm.sock#listen = 9000#g' /etc/php/7.4/fpm/pool.d/www.conf
 #RUN wget -q0- https://wordpress.org/latest.tar.gz | tar xvz -C /var/www/html --strip
-COPY ./tools/wp-script.sh /home
+COPY ./tools/wp-script.sh /home/wp-script.sh
 
 RUN chmod 755 /home/wp-script.sh
 #COPY php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
 
 EXPOSE 9000
 
-ENTRYPOINT [ "/home/wp-script.sh" ]
+ENTRYPOINT /home/wp-script.sh
 
-CMD [ "php-fpm", "--nodaemonize" , "-R"]
+#CMD [ "php-fpm7.4", "-F" , "-R"]

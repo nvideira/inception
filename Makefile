@@ -13,6 +13,7 @@ stop:
 
 clean: down
 		sudo rm -rf /home/nvideira/data;
+		docker system prune -a -f
 
 re: clean start
 

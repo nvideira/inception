@@ -1,9 +1,10 @@
-#! /bin/sh
+#!/bin/bash
 
-if [ ! -d "/var/lib/mysql/$DB_NAME"]; then
+if [ ! -d "/var/lib/mysql/$DB_NAME" ]; then
 
-echo "Starting mysql"
-exec service mysql start
+service mariadb start;
+
+sleep 3;
 
 echo "Creating database $DB_NAME"
 mysql -u root -e "CREATE DATABASE $DB_NAME;"

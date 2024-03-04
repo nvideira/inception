@@ -41,7 +41,7 @@ services:
       - .env
     restart: on-failure
     volumes:
-      - wp_vol
+      - wp_vol:/var/www/html
     networks:
       - inception_net
     depends_on:
